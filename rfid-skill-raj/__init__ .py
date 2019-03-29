@@ -1,6 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 import RPi.GPIO as GPIO
-import SimpleMFRC522
+import .SimpleMFRC522
 
 class SayHelloTo(MycroftSkill):
     def __init__(self):

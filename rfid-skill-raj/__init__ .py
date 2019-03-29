@@ -1,11 +1,11 @@
 from mycroft import MycroftSkill, intent_file_handler
 import RPi.GPIO as GPIO
-import .SimpleMFRC522
+from .SimpleMFRC522 import SimpleMFRC522
 
 class SayHelloTo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-		reader =  SimpleMFRC522.SimpleMFRC522()
+		reader =  SimpleMFRC522()
 		self.id, self.text = reader.read()
 		
     #@intent_file_handler('to.hello.say.intent')

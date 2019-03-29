@@ -5,8 +5,8 @@ from .SimpleMFRC522 import SimpleMFRC522
 class SayHelloTo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-		reader =  SimpleMFRC522()
-		self.id, self.text = reader.read()
+        reader = SimpleMFRC522()
+        self.id, self.text = reader.read()
 		
     #@intent_file_handler('to.hello.say.intent')
     def handle_say_hello_to_intent(self):

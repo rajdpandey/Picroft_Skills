@@ -2,7 +2,7 @@ from mycroft import MycroftSkill
 import RPi.GPIO as GPIO
 # from .SimpleMFRC522 import SimpleMFRC522
 from threading import Thread
-from .Read import user
+from .read import user
 import time
 
 reader = user()

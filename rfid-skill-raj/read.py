@@ -23,7 +23,7 @@
 
 import RPi.GPIO as GPIO
 from .MFRC522 import MFRC522
-#import signal
+import signal
 
 continue_reading = True
 
@@ -41,7 +41,7 @@ def ___init__():
 
 
 # Hook the SIGINT
-#signal.signal(signal.SIGINT, end_read)
+signal.signal(signal.SIGINT, end_read)
 
 # Create an object of the class MFRC522
 MIFAREReader = MFRC522()

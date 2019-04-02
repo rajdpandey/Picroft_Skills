@@ -32,17 +32,6 @@ def ___init__():
     continue_read()
 
 
-# Capture SIGINT for cleanup when the script is aborted
-# def end_read(signal, frame):
-#     global continue_reading
-#     print("Ctrl+C captured, ending read.")
-#     continue_reading = False
-#     GPIO.cleanup()
-
-
-# Hook the SIGINT
-signal.signal(signal.SIGINT, end_read)
-
 # Create an object of the class MFRC522
 MIFAREReader = MFRC522()
 
@@ -51,7 +40,6 @@ MIFAREReader = MFRC522()
 def continue_read():
     # This loop keeps checking for chips. If one is near it will get the UID and authenticate
     while continue_reading:
-        print("Card Found")
         # Scan for cards
         (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
@@ -66,8 +54,6 @@ def continue_read():
         if status == MIFAREReader.MI_OK:
 
             # Print UID
-            print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
-            print(type(uid))
             # This is the default key for authentication
             key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
 
@@ -83,14 +69,11 @@ def continue_read():
                 MIFAREReader.MFRC522_StopCrypto1()
             else:
                 print("Authentication error")
-        print("Card UID : " + str(uid))
         return uid
 
 
 def user():
     uid = continue_read()
-    print(uid)
-    print("Card : " + str(type(uid)))
     if uid == [82, 19, 245, 28, 168]:
         return "Eric"
     elif uid == [218, 190, 138, 171, 69]:
@@ -99,4 +82,3 @@ def user():
         return "James"
     else:
         return ""
-

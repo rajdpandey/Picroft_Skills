@@ -11,7 +11,8 @@ GREEN = 15
 GPIO.setwarnings(False)
 GPIO.setup(RED, GPIO.OUT)
 GPIO.setup(GREEN, GPIO.OUT)
-
+GPIO.output(RED, GPIO.LOW)
+GPIO.output(GREEN, GPIO.LOW)
 
 class Rfid(MycroftSkill):
     def __init__(self):
@@ -27,24 +28,19 @@ class Rfid(MycroftSkill):
 
     def read_thread(self):
         while not self.stopped:
-            if reader != "":
+            if user() != "":
                 if self.stop == True:
                     self.confirm()
                     self.stop = False
-                # self.id, self.text = reader.read_no_block()
-                # while self.text is not None:
-                #     if self.stop == True:
-                #         self.confirm()
-                #         self.stop = False
-                # if self.text is None:
-                #     if self.stop1 ==false:
-                #         self.unconfirm()
-                #         self.stop1 = True
+                if user() == "":
+                    if self.stop1 == false:
+                        self.unconfirm()
+                        self.stop1 = True
 
     def confirm(self):
         GPIO.output(GREEN, GPIO.HIGH)
         GPIO.output(RED, GPIO.LOW)
-        response = {'text': self.text}
+        response = {'text': user()}
         self.speak_dialog("to.hello.say", data=response)
         time.sleep(5)
         GPIO.output(GREEN, GPIO.LOW)
@@ -58,6 +54,8 @@ class Rfid(MycroftSkill):
         GPIO.output(GREEN, GPIO.LOW)
         self.speak_dialog("to.bye.say")
         time.sleep(2)
+        GPIO.output(RED, GPIO.LOW)
+        GPIO.output(GREEN, GPIO.LOW)
 
     def shutdown(self):
         self.stopped = True

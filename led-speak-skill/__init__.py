@@ -17,6 +17,7 @@ class James(MycroftSkill):
             GPIO.setwarnings(False)
             GPIO.setup(15, GPIO.OUT)
             GPIO.setup(11, GPIO.OUT)
+
             pass
         except GPIO.error:
             self.log.warning("Cant initialize GPIO - skill will not load")
@@ -35,6 +36,7 @@ class James(MycroftSkill):
     def handle_listener_ended(self):
         GPIO.output(15, GPIO.LOW)
         GPIO.output(11, GPIO.LOW)
+
 
 
 def create_skill():

@@ -1,0 +1,7 @@
+{
+    "intent": {
+        "name": "Sonia"
+    },
+    "intent_type": "to.hello.say.intent",
+    "utterance": "This is Sonia"
+}
